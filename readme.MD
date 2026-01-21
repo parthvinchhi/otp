@@ -60,7 +60,7 @@ Here's an example of how to send otp:
             "SMTP_PORT",
         )
 
-        if err := cfg.SendEmail([]string("SEND_TO_EMAIL"), value); err != nil {
+        if err := cfg.SendEmail([]string{"SEND_TO_EMAIL"}, value); err != nil {
             log.Fatalf("Error sending otp via email: %v", err)
         }
     }
