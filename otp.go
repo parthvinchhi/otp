@@ -52,13 +52,15 @@ func (cfg *EmailConfig) SendEmail(to []string, otp int) error {
 
 	auth := smtp.PlainAuth("", cfg.From, cfg.Password, cfg.SMTPServer)
 
-	err := smtp.SendMail(
+	if err := smtp.SendMail(
 		fmt.Sprintf("%s:%s", cfg.SMTPServer, cfg.SMTPPort),
 		auth,
 		cfg.From,
 		to,
 		[]byte(msg),
-	)
+	); err != nil {
+		return err
+	}
 
-	return err
+	return nil
 }
